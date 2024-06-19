@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create Debian package structure
-        run: mkdeb.sh
+        run: bash mkdeb.sh
 
       - name: Make amd64 Debian package
         uses: jiro4989/build-deb-action@v3

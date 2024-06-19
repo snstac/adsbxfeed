@@ -15,7 +15,7 @@ jobs:
         uses: jiro4989/build-deb-action@v3
         with:
           package: adsbxfeed
-          package_root: .debpkg
+          package_root: debian
           maintainer: Greg Albrecht
           arch: amd64
           version: ${{ github.ref }} # refs/tags/v*.*.*
@@ -26,7 +26,7 @@ jobs:
         uses: jiro4989/build-deb-action@v3
         with:
           package: adsbxfeed
-          package_root: .debpkg
+          package_root: debian
           maintainer: Greg Albrecht
           arch: arm64
           version: ${{ github.ref }} # refs/tags/v*.*.*

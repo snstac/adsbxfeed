@@ -5,4 +5,6 @@ echo "adsbxfeed prerm"
 systemctl disable adsbxfeed
 systemctl stop adsbxfeed
 
+deluser --system adsbxfeed
+
 exit 0

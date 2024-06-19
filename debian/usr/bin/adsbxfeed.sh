@@ -16,15 +16,8 @@
 # limitations under the License.
 #
 
-CONF_FILE="/etc/AryaOS/adsbxfeed.conf"
-
-if [ -f $CONF_FILE ]; then
-  # shellcheck source=SCRIPTDIR/../../etc/AryaOS/adsbxfeed.conf
-  . $CONF_FILE
-else
-  echo "$CONF_FILE doesn't exist, exiting."
-  exit 1
-fi
+# shellcheck source=SCRIPTDIR/../..//etc/AryaOS/adsbxfeed.conf
+[ -f "/etc/Aryaos/adsbxfeed.conf" ] && . /etc/Aryaos/adsbxfeed.conf
 
 if ! [[ -d $RUN_DIR ]]; then
     mkdir -p "$RUN_DIR"

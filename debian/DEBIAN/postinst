@@ -3,18 +3,17 @@
 echo "adsbxfeed postinst"
 
 # shellcheck source=SCRIPTDIR/../etc/AryaOS/adsbxfeed.conf
-[ -f "/etc/Aryaos/adsbxfeed.conf" ] && . /etc/Aryaos/adsbxfeed.conf
+[ -f "/etc/AryaOS/adsbxfeed.conf" ] && . /etc/AryaOS/adsbxfeed.conf
 
 [ -z "$UUID_FILE" ] && UUID_FILE="/etc/AryaOS/UUID.txt"
 
 if [ ! -f "$UUID_FILE" ]; then
-  mkdir -p /etc/AryaOS
   echo "$UUID_FILE doesn't exist, initializing."
+  mkdir -p /etc/AryaOS
   uuidgen > "$UUID_FILE"
 fi
 
 # Sane defaults:
-
 [ -z "$SERVER_HOME" ] && SERVER_HOME=/run/adsbxfeed
 [ -z "$SERVER_USER" ] && SERVER_USER=adsbxfeed
 [ -z "$SERVER_NAME" ] && SERVER_NAME="ADSBExchange.com ADS-B Feed System User"

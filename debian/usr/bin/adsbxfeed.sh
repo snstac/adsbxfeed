@@ -16,11 +16,12 @@
 # limitations under the License.
 #
 
-# shellcheck source=SCRIPTDIR/../..//etc/AryaOS/adsbxfeed.conf
-[ -f "/etc/Aryaos/adsbxfeed.conf" ] && . /etc/Aryaos/adsbxfeed.conf
+# shellcheck source=SCRIPTDIR/../../etc/AryaOS/adsbxfeed.conf
+[ -f "/etc/AryaOS/adsbxfeed.conf" ] && . /etc/AryaOS/adsbxfeed.conf
 
 if ! [[ -d $RUN_DIR ]]; then
-    mkdir -p "$RUN_DIR"
+    options=(-p "$RUN_DIR")
+    mkdir "${options[@]}"
 fi
 
 if [[ -z $INPUT ]]; then
@@ -48,9 +49,6 @@ options=(--net --net-only --quiet
     --net-connector="$SOURCE"
     --net-connector="$UAT_SOURCE" 
     --net-beast-reduce-interval="$REDUCE_INTERVAL" 
-    "$NET_OPTIONS" 
-    "$JSON_OPTIONS" 
-
 )
 
-exec /usr/bin/readsb "${options[@]}"
+exec /usr/bin/readsb "${options[@]}" "${NET_OPTIONS[@]}" "${JSON_OPTIONS[@]}"

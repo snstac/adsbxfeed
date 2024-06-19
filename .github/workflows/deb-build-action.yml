@@ -67,5 +67,4 @@ jobs:
           file: *.deb
           tag: ${{ github.ref }}
           overwrite: true
-          file_glob: true
-          
+          file_glob: yes

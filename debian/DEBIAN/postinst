@@ -1,6 +1,14 @@
 #!/bin/bash
 
-echo "\033[36m adsbxfeed postinst `date +"%s"` \033[39m"
+echo "adsbxfeed postinst"
+
+UUID_FILE="/etc/AryaOS/UUID.txt"
+
+if [ ! -f $UUID_FILE ]; then
+  mkdir -p /etc/AryaOS
+  echo "$UUID_FILE doesn't exist, initializing."
+  uuidgen > $UUID_FILE
+fi
 
 systemctl enable adsbxfeed
 systemctl start adsbxfeed

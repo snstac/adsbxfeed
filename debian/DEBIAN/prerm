@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "\033[36m adsbxfeed prerm `date +"%s"` \033[39m"
+echo "adsbxfeed prerm"
 
 systemctl disable adsbxfeed
 systemctl stop adsbxfeed

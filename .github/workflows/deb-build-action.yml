@@ -11,34 +11,27 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: create sample script
-        run: |
-          mkdir -p .debpkg/usr/bin
-          mkdir -p .debpkg/lib/systemd/system
-          mkdir -p .debpkg/boot
+      - name: Create Debian package structure
+        run: mkdeb.sh
 
-          cp adsbxfeed.sh .debpkg/usr/bin/adsbxfeed.sh
-          chmod +x .debpkg/usr/bin/adsbxfeed.sh
-
-          cp adsbxfeed.service .debpkg/lib/systemd/system
-
-          cp adsbxfeed.txt .debpkg/boot
-
-          # create DEBIAN directory if you want to add other pre/post scripts
-          mkdir -p .debpkg/DEBIAN
-
-          echo -e "systemctl enable adsbxfeed --now" > .debpkg/DEBIAN/postinst
-          chmod +x .debpkg/DEBIAN/postinst
-
-          echo -e "systemctl disable adsbxfeed --now" > .debpkg/DEBIAN/prerm
-          chmod +x .debpkg/DEBIAN/prerm
-
-      - uses: jiro4989/build-deb-action@v3
+      - name: Make amd64 Debian package
+        uses: jiro4989/build-deb-action@v3
         with:
           package: adsbxfeed
           package_root: .debpkg
           maintainer: Greg Albrecht
-          arch: any
+          arch: amd64
+          version: ${{ github.ref }} # refs/tags/v*.*.*
+          desc: "Configures ADSBExchange ADS-B feeder."
+          homepage: 'https://github.com/snstac/adsbxfeed'
+
+      - name: Make arm64 Debian package
+        uses: jiro4989/build-deb-action@v3
+        with:
+          package: adsbxfeed
+          package_root: .debpkg
+          maintainer: Greg Albrecht
+          arch: arm64
           version: ${{ github.ref }} # refs/tags/v*.*.*
           desc: "Configures ADSBExchange ADS-B feeder."
           homepage: 'https://github.com/snstac/adsbxfeed'

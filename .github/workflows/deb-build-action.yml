@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create Debian package structure
-        run: bash mkdeb.sh
-
       - name: Make amd64 Debian package
         uses: jiro4989/build-deb-action@v3
         with:

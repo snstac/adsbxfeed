@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "\033[36m adsbxfeed postinst `date +"%s"` \033[39m"
+
+systemctl enable adsbxfeed
+systemctl start adsbxfeed
+
+exit 0
